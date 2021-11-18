@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <title>Cloud Schedule</title>
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <script src="index.js"></script>
+  </head>
+
+  <body id="body">
+
+    <h1 id="title">Task Schedule</h1>
+    <table id="schedule">
+      <tr id="week">
+        <td class="day" id="mon"><h3>Monday</h3></td>
+        <td class="day" id="tue"><h3>Tuesday</h3></td>
+        <td class="day" id="wed"><h3>Wednesday</h3></td>
+        <td class="day" id="thu"><h3>Thursday</h3></td>
+        <td class="day" id="fri"><h3>Friday</h3></td>
+        <td class="day" id="sat"><h3>Saturday</h3></td>
+        <td class="day" id="sun"><h3>Sunday</h3></td>
+      </tr>
+    </table>
+    <div id="nav">
+      <button class="nav" id="prev">< Previous Week</button>
+      <button id="newEvent">+</button>
+      <button class="nav" id="next">Next Week ></button>
+    </div>
+
+
+  </body>
+
+</html>

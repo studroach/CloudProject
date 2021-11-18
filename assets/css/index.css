@@ -1,0 +1,96 @@
+#body {
+  border-top: .3vw solid #6d6e6d;
+  margin: 0;
+}
+
+#title {
+  width: 30vw;
+  margin-top: 0;
+  margin-left: 34.4vw;
+  border: .3vw solid #6d6e6d;
+  border-top: none;
+  border-bottom-left-radius: 2vw;
+  border-bottom-right-radius: 2vw;
+  text-align: center;
+  font-size: 4vw;
+  background-color: #e7e7e7;
+}
+
+#schedule {
+  width: 98vw;
+  margin-left: 1vw;
+  margin-top: 5vh;
+}
+
+#week {
+
+}
+
+.day {
+  border: .3vw solid #2e2d2d;
+  border-radius: 2vw;
+  width: 13vw;
+  height: 70vh;
+  margin: .4vw;
+  background-color: #e7e7e7;
+  text-align: center;
+  vertical-align: top;
+}
+
+h3 {
+  margin: .5vw;
+  background-color: #598a1d;
+  color: #efefef;
+  padding-top: .5vw;
+  padding-bottom: .5vw;
+  border-radius: 2vw;
+  font-size: 2.2vw;
+}
+
+#nav {
+  width: 98vw;
+  margin-left: 1vw;
+}
+
+button.nav {
+    width: 23vw;
+    margin-top: 1vw;
+    border: .3vw solid #6d6e6d;
+    border-radius: 2vw;
+    padding: .5vw;
+    background-color: #598a1d;
+    color: #efefef;
+    font-size: 2.2vw;
+}
+
+button.nav:hover {
+  color: #666666;
+  background-color: #8bbd4d;
+  cursor: pointer;
+}
+
+#prev {
+
+}
+
+#next {
+  margin-left: 23.5vw;
+}
+
+#newEvent {
+  width: 4vw;
+  margin-top: 1vw;
+  margin-left: 23.5vw;
+  border: .3vw solid #6d6e6d;
+  border-radius: 2vw;
+  padding: .5vw;
+  background-color: #598a1d;
+  color: #efefef;
+  font-size: 2.2vw;
+}
+
+#newEvent:hover {
+  color: #666666;
+  background-color: #8bbd4d;
+  cursor: pointer;
+}
