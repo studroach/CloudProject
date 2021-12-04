@@ -1,30 +1,82 @@
 body {
-    background:#DFDFDF;
-    color:#000;
-    overflow:hidden;
+  background: #dfdfdf;
+  color: #000;
+  font-family: sans-serif;
 }
 
-p.notify {
-    background:#C3C3C3;
-    margin:0;
-    padding: 20px;
-    text-transform:uppercase;
-    -webkit-app-region: drag;
+p.header {
+  background:#598a1d;
+  margin:0;
+  margin-bottom: 5%;
+  padding: 20px;
+  font-size: 1.2em;
+  font-weight: 500;
+  text-transform:uppercase;
+  -webkit-app-region: drag;
 }
 
-.row2 {
-    width:100%;
-    display: grid;
-    grid-template-columns: auto auto;
-    padding:20px;
+.gridContainer {
+  width: 96%;
+  margin: 2%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 4%;
+  grid-row-gap: 8%;
 }
 
 input {
-    padding:12px;
+  border: 2px solid #fff;
+  padding: 12px;
+}
+
+button {
+  margin-top: 8px;
+  padding: 12px;
+  border: 2px solid #dfdfdf;
+}
+
+.required {
+  border-bottom: 2px solid #f54b1b;
+}
+
+#taskName {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+#date {
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+
+#taskOwner {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+#ownerId {
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+
+#submitButton {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  background-color: #98ba6e;
+}
+#submitButton:hover {
+  background-color: #598a1d;
 }
 
 #closeBtn {
-    cursor:pointer;
-    padding:20px;
-    text-decoration:underline;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  font-weight: 500;
+  font-size: 2em;
+  padding: 0;
+  background-color: #bf4949;
+}
+#closeBtn:hover {
+  background-color: #d11b1b;
 }

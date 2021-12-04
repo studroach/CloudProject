@@ -17,24 +17,22 @@
 }
 
 #schedule {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: .5vw;
   width: 98vw;
   margin-left: 1vw;
   margin-top: 5vh;
 }
 
-#week {
-
-}
-
 .day {
   border: .3vw solid #2e2d2d;
   border-radius: 2vw;
-  width: 13vw;
-  height: 70vh;
-  margin: .4vw;
+  height: 68vh;
   background-color: #e7e7e7;
   text-align: center;
   vertical-align: top;
+  overflow: hidden;
 }
 
 h3 {
@@ -47,6 +45,25 @@ h3 {
   font-size: 2.2vw;
 }
 
+#dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: .5vw;
+  width: 98vw;
+  margin-left: 1vw;
+}
+
+.date {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  border: .3vw solid #2e2d2d;
+  border-radius: 2vw;
+  padding: .2vw;
+  text-align: center;
+  font-size: 2vw;
+  font-weight: 500;
+}
+
 #nav {
   width: 98vw;
   margin-left: 1vw;
@@ -55,9 +72,9 @@ h3 {
 button.nav {
     width: 23vw;
     margin-top: 1vw;
-    border: .3vw solid #6d6e6d;
+    border: none;
     border-radius: 2vw;
-    padding: .5vw;
+    padding: .7vw;
     background-color: #598a1d;
     color: #efefef;
     font-size: 2.2vw;
@@ -81,9 +98,9 @@ button.nav:hover {
   width: 4vw;
   margin-top: 1vw;
   margin-left: 23.5vw;
-  border: .3vw solid #6d6e6d;
-  border-radius: 2vw;
-  padding: .5vw;
+  border: none;
+  border-radius: 2.4vw;
+  padding: .7vw;
   background-color: #598a1d;
   color: #efefef;
   font-size: 2.2vw;

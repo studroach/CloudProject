@@ -8,22 +8,31 @@
     <title>Cloud Schedule</title>
     <link rel="stylesheet" href="../assets/css/index.css">
     <script src="index.js"></script>
+    <script src="ServerCom.js"></script>
+    <script src="DateManager.js"></script>
   </head>
 
   <body id="body">
 
     <h1 id="title">Task Schedule</h1>
-    <table id="schedule">
-      <tr id="week">
-        <td class="day" id="mon"><h3>Monday</h3></td>
-        <td class="day" id="tue"><h3>Tuesday</h3></td>
-        <td class="day" id="wed"><h3>Wednesday</h3></td>
-        <td class="day" id="thu"><h3>Thursday</h3></td>
-        <td class="day" id="fri"><h3>Friday</h3></td>
-        <td class="day" id="sat"><h3>Saturday</h3></td>
-        <td class="day" id="sun"><h3>Sunday</h3></td>
-      </tr>
-    </table>
+    <div id="schedule">
+      <div class="day" id="sun"><h3>Sunday</h3></div>
+      <div class="day" id="mon"><h3>Monday</h3></div>
+      <div class="day" id="tue"><h3>Tuesday</h3></div>
+      <div class="day" id="wed"><h3>Wednesday</h3></div>
+      <div class="day" id="thu"><h3>Thursday</h3></div>
+      <div class="day" id="fri"><h3>Friday</h3></div>
+      <div class="day" id="sat"><h3>Saturday</h3></div>
+    </div>
+    <div id="dates">
+      <p class="date"></p>
+      <p class="date"></p>
+      <p class="date"></p>
+      <p class="date"></p>
+      <p class="date"></p>
+      <p class="date"></p>
+      <p class="date"></p>
+    </div>
     <div id="nav">
       <button class="nav" id="prev">< Previous Week</button>
       <button id="newEvent">+</button>

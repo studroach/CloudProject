@@ -3,9 +3,7 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
-const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://<usr>:<pwd>@<cluster>.bgs0y.mongodb.net/<db>?retryWrites=true&w=majority";
-const client = new MongoClient(uri);
+const fetch = require('electron-fetch').default;
 
 let mainWindow, win;
 
@@ -70,44 +68,37 @@ ipcMain.on("windowRequest", (event, args) => {
 
 });
 
+//Inter Process Communication Bridges///////////////////////////////////////////
 ipcMain.on("addSubmit", (event, args) => {
 
   //close windows
   win.close();
-  //add data to database
-
+  //send data to server to be added to database
+  if(args !== undefined && args !== "") {
+    fetch('http://localhost:3000/save',{
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(args)
+    });
+  }
   //send update to index
 
 });
 
-ipcMain.on("dataRequest", (event, args) => {
-
-  //aqire data from DB
-  getData(args).then((responseObj) => {
-    // Send result back to renderer process
-    event.reply("dataReturn", responseObj);
-  });
-});
-
-//mongodb connecction and retrieval function
-async function getData(classifier){
+ipcMain.on("dataRequest", event => {
   try {
-
-    await client.connect();
-    const collection = client.db("DoorDashTweets").collection("Tweets");
-
-    const cursor = collection.find({Classifer: `${classifier}`});
-    const result = await cursor.toArray();
-
-    if (result.length > 0) {
-
-      return result;
-
-    }else{console.log("none returned :(");}
+    fetch('http://localhost:3000/request')
+      .then(res => res.json())
+      .then(json => {
+        //Send result back to renderer processconsole.log(data);
+        event.reply("dataReturn", json);
+      })
 
   } catch (e) {
-    console.error(e);
-  } finally {
-    await client.close();
+    console.log(e);
   }
-}
+
+});

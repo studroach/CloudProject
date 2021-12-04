@@ -11,20 +11,20 @@
   </head>
 
   <body id="body">
-    <p class="notify">Add a new task</p>
 
-    <div class="row2">
-        <div>
-            <input id="notifyVal" placeholder="Task Name">
-        </div>
-        <button id="updateBtn">Add</button>
+    <p class="header">Add a new task</p>
+
+    <div class="gridContainer">
+
+      <input class="required" id="taskName" placeholder="Task Name">
+      <input class="required" id="date" type="date">
+      <input id="taskOwner" placeholder="Task Owner">
+      <input id="ownerId" placeholder="Owner ID" type="number">
+      <button id="submitButton">Add</button>
+      <button id="closeBtn">X</button>
+
     </div>
-    <div>
 
-        <a id="closeBtn">Close Window</a><br>
-
-    </div>
-    <script src="add.js"></script>
   </body>
 
 </html>
