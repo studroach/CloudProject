@@ -15,7 +15,7 @@ window.onload = function() {
   let daylist = document.querySelectorAll('p.date');
 
   const date = new DateManager();
-  populateDates(date, daylist);
+  populateDates(date, daylist, 0);
 
   const connection = new ServerCom();
 
@@ -28,5 +28,7 @@ function populateDates(date, list, weekOffset){
   list.forEach((item, i) => {
     item.innerHTML = array[i];
   });
-
+  if(weekOffset == 0){
+    list[date.day].style.border = ".3vw solid #f54b1b"
+  }
 }

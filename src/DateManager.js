@@ -27,7 +27,8 @@ class DateManager{
       monthCounter = this.todaysDate[1] - 1;
       if(monthCounter == 0){monthCounter = 12;}
     }else {
-      sundayDate = this.todaysDate - this.day;
+      sundayDate = this.todaysDate[2] - this.day;
+      monthCounter = this.todaysDate[1];
     }
 
     for(var i = 0; i < 7; i++) {
