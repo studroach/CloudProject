@@ -4,8 +4,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 //Mongo DB Resources
 const { MongoClient } = require('mongodb');
-const uri = "";
-//const client = new MongoClient(uri);
+const uri = "mongodb+srv://daniyal:2021@task.ubjgn.mongodb.net/TaskManagementDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri);
 //Init
 const app = express();
 const jsonParser = bodyParser.json();
@@ -22,14 +22,14 @@ async function startServer() {
 startServer();
 
 //Data Requests/////////////////////////////////////////////////////////////////
-async function getData(requestObject){
+async function getData(){
 
   try {
     //Accessing DB
     await client.connect();
-    const collection = client.db("").collection("");//TODO
+    const collection = client.db("Task").collection("Task");
 
-    const cursor = collection.find({});//TODO
+    const cursor = collection.find();
     const result = await cursor.toArray();
     return result;
   } catch (e) {
@@ -49,12 +49,12 @@ async function onNewTask(req, res) {
 app.post('/save', jsonParser, onNewTask);
 
 async function onRequestData(req, res) {
-  res.send({message:"I got the response!"});
+  getData().then((value) => {
+    res.send(value);
+  });
+  // res.send({message:"I got the response!"});
   console.log("Sent response");
 }
 app.get('/request', onRequestData);
 
 //Testing///////////////////////////////////////////////////////////////////////
-// getData(0).then((value) => {
-//   console.log(value);
-// });

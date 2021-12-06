@@ -97,7 +97,7 @@ ipcMain.on("dataRequest", event => {
     fetch('http://localhost:3000/request')
       .then(res => res.json())
       .then(json => {
-        //Send result back to renderer processconsole.log(data);
+        //Send result back to renderer process
         event.reply("dataReturn", json);
       })
 
