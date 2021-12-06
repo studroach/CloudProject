@@ -13,7 +13,9 @@ class DateManager{
 
   getWeekArray(weekOffset) {
     const weekArray = [];
-    let sundayDate,dayMax,monthCounter;
+    let sundayDate,dayMax,monthCounter,offsetMonth,offsetDay;
+
+    //edit to allow for changing week
 
     if(this.longMonths.includes(this.todaysDate[1] - 1)){dayMax = 31}
     else if(this.shortMonths.includes(this.todaysDate[1] - 1)){dayMax = 30}

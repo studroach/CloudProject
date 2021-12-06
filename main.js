@@ -5,7 +5,8 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const fetch = require('electron-fetch').default;
 
-let mainWindow, win;
+let mainWindow = null;
+let win = null;
 
 function createWindow () {
   // Create the browser window.
@@ -54,18 +55,20 @@ app.on('window-all-closed', function () {
 ipcMain.on("windowRequest", (event, args) => {
 
   //spawn new window
-  win = new BrowserWindow({
-    width: 500,
-    height: 300,
-    alwaysOnTop: true,
-    frame: false,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload/preloadAdd.js'),
-    }
-  });
-  win.on('close', function() { win = null });
-  win.loadFile('src/add.html');
 
+  if(win == null){
+    win = new BrowserWindow({
+      width: 500,
+      height: 300,
+      alwaysOnTop: true,
+      frame: false,
+      webPreferences: {
+        preload: path.join(__dirname, 'preload/preloadAdd.js'),
+      }
+    });
+    win.on('close', function() { win = null });
+    win.loadFile('src/add.html');
+  }
 });
 
 //Inter Process Communication Bridges///////////////////////////////////////////
@@ -73,6 +76,7 @@ ipcMain.on("addSubmit", (event, args) => {
 
   //close windows
   win.close();
+  win = null;
   //send data to server to be added to database
   if(args !== undefined && args !== "") {
     fetch('http://localhost:3000/save',{

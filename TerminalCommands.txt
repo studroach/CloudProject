@@ -1,0 +1,3 @@
+Initialize node modules: npm install
+Start server: node Server/server.js
+Start client: npm start
