@@ -12,32 +12,53 @@ window.onload = function() {
     window.api.windowRequest("windowRequest");
   });
 
-  let daylist = document.querySelectorAll('p.date');
+  let nextWeek = document.getElementById("next");
+  nextWeek.addEventListener("click", function(event){
+    weekOffset++;
+    populateDates(daylist);
+    populateEvents(tasks);
+  });
+
+  let prevWeek = document.getElementById("prev");
+  prevWeek.addEventListener("click", function(event){
+    weekOffset--;
+    populateDates(daylist);
+    populateEvents(tasks);
+  });
+
+  daylist = document.querySelectorAll('p.date');
   date = new DateManager();
-  populateDates(daylist, 0);
+  populateDates(daylist);
 
   const connection = new ServerCom();
 
 }
 
-let date;
+let date,daylist,tasks;
 let weekOffset = 0;
 
-function populateDates(list, weekOffset){
+function populateDates(list){
   date.weekArray = date.getWeekArray(weekOffset);
+  console.log(date.weekArray);
   list.forEach((item, i) => {
     item.innerHTML = date.weekArray[i];
   });
   if(weekOffset == 0){
     list[date.day].style.border = ".3vw solid #f54b1b"
+  }else {
+    list[date.day].style.border = ".3vw solid #2e2d2d"
   }
 }
 
 function populateEvents(data){
-
   let eventContainers = document.querySelectorAll(".eventContainer");
 
   if(Array.isArray(data)){
+    tasks = data;
+    eventContainers.forEach((item) => {
+      item.innerHTML = "";
+    });
+
     data.forEach((task) => {
       if(date.weekArray.includes(`${parseInt(task.taskDay, 10)}/${task.taskMonth}`)) {
         const dayslot = date.weekArray.findIndex((element) => {
@@ -47,6 +68,7 @@ function populateEvents(data){
       }
     });
   }else {
+    tasks.push(data);
     if(date.weekArray.includes(`${parseInt(data.taskDay, 10)}/${data.taskMonth}`)) {
       const dayslot = date.weekArray.findIndex((element) => {
         if(element == `${parseInt(data.taskDay, 10)}/${data.taskMonth}`){return true;}
