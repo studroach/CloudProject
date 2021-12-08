@@ -4,7 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 //Mongo DB Resources
 const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://daniyal:2021@task.ubjgn.mongodb.net/TaskManagementDatabase?retryWrites=true&w=majority";
+const uri = "mongodb+srv://daniyal123:DOsEWjbU6nWb3g9u@task.ubjgn.mongodb.net/Task?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
 //Init
 const app = express();
@@ -43,11 +43,32 @@ async function getData(){
 
 //Get and Post Methods//////////////////////////////////////////////////////////
 
+//Save Data/////////////////////////////////////////////////////////////////////
 async function onNewTask(req, res) {
+  console.log("New task added:");
   console.log(req.body);
+  try {
+    await client.connect();
+    const collection = client.db("Task").collection("Task");
+
+    const result = await collection.insertOne(req.body);
+    if (result) {
+      return { message: "Task has been added" };
+    }
+    else {
+      return { message: "Task not added" };
+    }
+  } catch (e) {
+    //Error
+    console.error(e);
+  } finally {
+    //Close Connection
+    await client.close();
+  }
 }
 app.post('/save', jsonParser, onNewTask);
 
+//Get Data//////////////////////////////////////////////////////////////////////
 async function onRequestData(req, res) {
   getData().then((value) => {
     res.send(value);
@@ -56,5 +77,3 @@ async function onRequestData(req, res) {
   console.log("Sent response");
 }
 app.get('/request', onRequestData);
-
-//Testing///////////////////////////////////////////////////////////////////////

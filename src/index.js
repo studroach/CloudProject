@@ -2,8 +2,8 @@ window.onload = function() {
 
   //sets up communication with main electron process
   window.api.dataReturn("dataReturn", (data) => {
-    //load event data
     console.log(data);
+    populateEvents(data);
   });
 
   let addEvent = document.getElementById("newEvent");
@@ -13,22 +13,46 @@ window.onload = function() {
   });
 
   let daylist = document.querySelectorAll('p.date');
-
-  const date = new DateManager();
-  populateDates(date, daylist, 0);
+  date = new DateManager();
+  populateDates(daylist, 0);
 
   const connection = new ServerCom();
 
 }
 
+let date;
 let weekOffset = 0;
 
-function populateDates(date, list, weekOffset){
-  let array = date.getWeekArray(weekOffset);
+function populateDates(list, weekOffset){
+  date.weekArray = date.getWeekArray(weekOffset);
   list.forEach((item, i) => {
-    item.innerHTML = array[i];
+    item.innerHTML = date.weekArray[i];
   });
   if(weekOffset == 0){
     list[date.day].style.border = ".3vw solid #f54b1b"
   }
+}
+
+function populateEvents(data){
+
+  let eventContainers = document.querySelectorAll(".eventContainer");
+
+  if(Array.isArray(data)){
+    data.forEach((task) => {
+      if(date.weekArray.includes(`${parseInt(task.taskDay, 10)}/${task.taskMonth}`)) {
+        const dayslot = date.weekArray.findIndex((element) => {
+          if(element == `${parseInt(task.taskDay, 10)}/${task.taskMonth}`){return true;}
+        });
+        eventContainers[dayslot].innerHTML += `<p>${task.taskTitle}<br>${task.assignedTo}</p>`
+      }
+    });
+  }else {
+    if(date.weekArray.includes(`${parseInt(data.taskDay, 10)}/${data.taskMonth}`)) {
+      const dayslot = date.weekArray.findIndex((element) => {
+        if(element == `${parseInt(data.taskDay, 10)}/${data.taskMonth}`){return true;}
+      });
+      eventContainers[dayslot].innerHTML += `<p>${data.taskTitle}<br>${data.assignedTo}</p>`
+    }
+  }
+
 }

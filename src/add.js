@@ -8,7 +8,7 @@ window.onload = function() {
   let id = document.getElementById('ownerId');
 
   closeWindow.addEventListener('click', function(event){
-    window.api.send("addSubmit");
+    window.api.send("cancel");
   });
   submitButton.addEventListener('click', function(event){
     if(taskName.value !== "" && date.value !== "") {
@@ -21,7 +21,7 @@ window.onload = function() {
         taskMonth: dateParts[1],
         taskDay: dateParts[2],
         assignedTo: owner.value,
-        eId: id.value
+        "Employee ID": id.value
       }
       window.api.send("addSubmit", submitObj);
     }

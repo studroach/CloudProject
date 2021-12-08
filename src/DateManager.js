@@ -8,7 +8,8 @@ class DateManager{
     ];
     this.day = this.date.getDay()
     this.longMonths = [0,1,3,5,7,8,10,12];
-    this.shortMonths = [4,6,9,11]
+    this.shortMonths = [4,6,9,11];
+    this.weekArray = this.getWeekArray(0);
   }
 
   getWeekArray(weekOffset) {

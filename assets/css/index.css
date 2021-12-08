@@ -35,6 +35,12 @@
   overflow: hidden;
 }
 
+.eventContainer {
+  max-height: 64.8vh;
+  width: 86%;
+  margin: 7%;
+}
+
 h3 {
   margin: .5vw;
   background-color: #598a1d;
@@ -110,4 +116,11 @@ button.nav:hover {
   color: #666666;
   background-color: #8bbd4d;
   cursor: pointer;
+}
+
+.eventContainer > p {
+  background-color: #ffa930;
+  border-radius: 2vw;
+  padding-top: .5vh;
+  padding-bottom: .5vh;
 }

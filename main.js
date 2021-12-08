@@ -77,6 +77,7 @@ ipcMain.on("addSubmit", (event, args) => {
   //close windows
   win.close();
   win = null;
+  if (args == "") {console.log('nothing');}
   //send data to server to be added to database
   if(args !== undefined && args !== "") {
     fetch('http://localhost:3000/save',{
@@ -89,7 +90,13 @@ ipcMain.on("addSubmit", (event, args) => {
     });
   }
   //send update to index
+  mainWindow.webContents.send("dataReturn", args);
+});
 
+ipcMain.on("cancel", (event) => {
+  //close windows
+  win.close();
+  win = null;
 });
 
 ipcMain.on("dataRequest", event => {
