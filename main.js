@@ -55,7 +55,6 @@ app.on('window-all-closed', function () {
 ipcMain.on("windowRequest", (event, args) => {
 
   //spawn new window
-
   if(win == null){
     win = new BrowserWindow({
       width: 500,
